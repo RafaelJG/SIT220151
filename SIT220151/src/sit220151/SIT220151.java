@@ -16,8 +16,17 @@ public class SIT220151 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("cachorro");
-        System.out.println("que cachorro oq");
+        System.out.println("Gerador:");
+        Solucionador solucionador = new Solucionador();
+        
+        
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Mochila"+i+":");
+            solucionador.gerarSolucao().imprimeMochila();
+            
+        }
+        
+        
     }
     
 }

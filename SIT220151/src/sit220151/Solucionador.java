@@ -6,6 +6,7 @@
 package sit220151;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -13,8 +14,35 @@ import java.util.ArrayList;
  */
 public class Solucionador {
     private ArrayList<Item> estante = new ArrayList<>();
+
+    public Solucionador() {
+        this.preencheEstante();
+    }
     
     
+     
+    
+    public Mochila gerarSolucao(){
+        Random randomGenerator = new Random();
+        boolean mochilaCheia = false;
+        Mochila mochila = new Mochila();
+        int index;
+        do{
+            index = randomGenerator.nextInt(28);
+            Item item = estante.get(index);
+            if(mochila.getPeso() + item.getPeso() <= mochila.getCapacidade()){
+                if(!mochila.getSolucao().contains(item)) mochila.addItem(item);
+            }
+            else{
+                mochilaCheia = true;
+            }
+            
+           
+            
+        }while(!mochilaCheia);
+        
+        return mochila;
+    }
     
     public void preencheEstante(){
         this.estante.add(new Item(1,3,1));
@@ -47,4 +75,5 @@ public class Solucionador {
         this.estante.add(new Item(28,3,2));
     
     }
+    
 }
