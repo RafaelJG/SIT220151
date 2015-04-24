@@ -20,9 +20,9 @@ public class SIT220151 {
         Solucionador solucionador = new Solucionador();
         
         
-        for (int i = 0; i < 2; i++) {
-            //System.out.println("Mochila"+i+":");
-            solucionador.gerarSolucao();
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Mochila"+i+":");
+            solucionador.gerarSolucao().imprimeMochila();
             
             
         }

@@ -28,11 +28,23 @@ public class Solucionador {
         boolean mochilaCheia = false;
         Mochila mochila = new Mochila();
         mochila.setSolucao(new ArrayList<Item>(estante));
-        mochila.imprimeMochila();
+        //mochila.imprimeMochila();
         Collections.shuffle(mochila.getSolucao());
-        System.out.println("Novo:");
-        mochila.imprimeMochila();
-           
+        //System.out.println("Novo:");
+        //mochila.imprimeMochila();
+        for (int i = 0; i < mochila.getSolucao().size(); i++) {
+            if(mochila.getPeso() + mochila.getSolucao().get(i).getPeso() < 28){
+                mochila.setPeso(mochila.getPeso()+mochila.getSolucao().get(i).getPeso());
+                mochila.setValor(mochila.getValor()+mochila.getSolucao().get(i).getValor());
+                mochila.setMochilaCheia(i);
+                
+            }
+            else{
+                i = mochila.getSolucao().size(); // força a saída do laço
+               // System.out.println("Mochila cheia:"+mochila.getMochilaCheia());
+                
+            }
+        }
         
         return mochila;
     }
