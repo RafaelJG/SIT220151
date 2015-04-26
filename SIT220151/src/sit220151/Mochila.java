@@ -32,6 +32,13 @@ public class Mochila {
         this.capacidade = 28;
         this.valor = 0;
     }
+    
+    public Mochila(ArrayList<Item> solucao){
+        this.peso = 0;
+        this.capacidade = 28;
+        this.valor = 0;
+        this.solucao = solucao;
+    }
 
     public int getValor() {
         return valor;
@@ -46,18 +53,18 @@ public class Mochila {
             System.out.print(solucao.get(i).getId()+"\t");
             
         }
-        System.out.println("");
-        
-        for(int i = 0; i<=mochilaCheia; i++){
-            System.out.print(solucao.get(i).getValor()+"\t");
-            
-        }
-        System.out.println("");
-        
-        for(int i = 0; i<=mochilaCheia; i++){
-            System.out.print(solucao.get(i).getPeso()+"\t");
-            
-        }
+//        System.out.println("");
+//        
+//        for(int i = 0; i<=mochilaCheia; i++){
+//            System.out.print(solucao.get(i).getValor()+"\t");
+//            
+//        }
+//        System.out.println("");
+//        
+//        for(int i = 0; i<=mochilaCheia; i++){
+//            System.out.print(solucao.get(i).getPeso()+"\t");
+//            
+//        }
         System.out.println("");
         System.out.println("Peso da mochila:"+peso+"Valor da Mochila:"+valor);
         

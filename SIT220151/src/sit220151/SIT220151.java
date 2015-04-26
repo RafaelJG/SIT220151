@@ -18,11 +18,12 @@ public class SIT220151 {
         // TODO code application logic here
         System.out.println("Gerador:");
         Solucionador solucionador = new Solucionador();
+        Algoritmo algoritmo = new Algoritmo();
         
         
-        for (int i = 0; i < 10; i++) {
-            System.out.println("Mochila"+i+":");
-            solucionador.gerarSolucao().imprimeMochila();
+        for (int i = 0; i <= 0; i++) {
+            //System.out.println("Mochila"+i+":");
+            algoritmo.PMX(solucionador.gerarSolucao(),solucionador.gerarSolucao());
             
             
         }
