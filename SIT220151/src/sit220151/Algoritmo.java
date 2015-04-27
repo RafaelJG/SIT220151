@@ -42,8 +42,17 @@ public class Algoritmo {
         System.out.println("PMX");        
         
         for(int i = pontoTroca; i<=pontoTroca + tamPMX; i++){
+            
+            
+            
             filhos.get(0).getSolucao().set(i, mae.getSolucao().get(i));
-            filhos.get(1).getSolucao().set(i, pai.getSolucao().get(i));  
+            filhos.get(1).getSolucao().set(i, pai.getSolucao().get(i));
+        }
+        
+        
+        
+        for(Mochila filho : filhos){
+            filho.atualizaMochila();
         }
         
         System.out.println("Pai:");
@@ -55,14 +64,7 @@ public class Algoritmo {
         System.out.println("Filho 2:");
         filhos.get(1).imprimeMochila();
         
-        
-        for(Mochila filho : filhos){
-            filho.atualizaMochila();
-        }
-        
         return filhos;
-    
-    
     }
     
     boolean Maior(int num1, int num2){
@@ -85,6 +87,17 @@ public class Algoritmo {
         mochilaCopiada.setValor(mochila.getValor());
         
         return mochilaCopiada;
+    }
+    
+    public boolean temNaMochila(int idItem, Mochila mochila){
+        
+        for(int i = 0; i<= mochila.getMochilaCheia(); i++){
+            if(mochila.getSolucao().get(i).getId() == idItem){
+                return true;
+            }
+        }
+        
+        return false;        
     }
     
 }
