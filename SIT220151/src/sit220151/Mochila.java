@@ -49,17 +49,20 @@ public class Mochila {
     }
     
     public void imprimeMochila(){
+        System.out.println("ID");
         for(int i = 0; i<=mochilaCheia; i++){
             System.out.print(solucao.get(i).getId()+"\t");
             
         }
         System.out.println("");
+        System.out.println("VALOR");
         
         for(int i = 0; i<=mochilaCheia; i++){
             System.out.print(solucao.get(i).getValor()+"\t");
             
         }
         System.out.println("");
+        System.out.println("PESO");
         
         for(int i = 0; i<=mochilaCheia; i++){
             System.out.print(solucao.get(i).getPeso()+"\t");

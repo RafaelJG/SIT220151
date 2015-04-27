@@ -18,35 +18,26 @@ public class Solucionador {
 
     public Solucionador() {
         this.preencheEstante();
-    }
+    }    
     
-    
-     
-    
-    public Mochila gerarSolucao(){
-        Random randomGenerator = new Random();
-        boolean mochilaCheia = false;
-        Mochila mochila = new Mochila();
-        mochila.setSolucao(new ArrayList<Item>(estante));
-        //mochila.imprimeMochila();
-        Collections.shuffle(mochila.getSolucao());
-        //System.out.println("Novo:");
-        //mochila.imprimeMochila();
-        for (int i = 0; i < mochila.getSolucao().size(); i++) {
-            if(mochila.getPeso() + mochila.getSolucao().get(i).getPeso() < 28){
-                mochila.setPeso(mochila.getPeso()+mochila.getSolucao().get(i).getPeso());
-                mochila.setValor(mochila.getValor()+mochila.getSolucao().get(i).getValor());
-                mochila.setMochilaCheia(i);
-                
-            }
-            else{
-                i = mochila.getSolucao().size(); // força a saída do laço
-               // System.out.println("Mochila cheia:"+mochila.getMochilaCheia());
-                
-            }
-        }
+    public ArrayList<Mochila> gerarSolucao(int populacaoInicial){
         
-        return mochila;
+        ArrayList<Mochila> populacao = new ArrayList<>();
+        
+        for (int i = 0; i < populacaoInicial; i++) {
+            Random randomGenerator = new Random();
+            boolean mochilaCheia = false;
+            Mochila mochila = new Mochila();
+            mochila.setSolucao(new ArrayList<Item>(estante));
+            //mochila.imprimeMochila();
+            Collections.shuffle(mochila.getSolucao());
+
+            mochila.atualizaMochila();
+            
+            populacao.add(mochila);
+        }        
+                
+        return populacao;
     }
     
     public void preencheEstante(){

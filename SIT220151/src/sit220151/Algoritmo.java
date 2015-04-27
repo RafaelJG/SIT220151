@@ -23,7 +23,12 @@ public class Algoritmo {
 //        return filhos;
 //    }
     
+    
+    
+    
     ArrayList<Mochila> PMX (Mochila pai, Mochila mae){
+        
+        
         ArrayList<Mochila> filhos = new ArrayList<>();
         int pontoTroca = 0;
         int tamPMX = 0;
@@ -41,9 +46,7 @@ public class Algoritmo {
         
         System.out.println("PMX");        
         
-        for(int i = pontoTroca; i<=pontoTroca + tamPMX; i++){
-            
-            
+        for(int i = pontoTroca; i<pontoTroca + tamPMX; i++){           
             
             filhos.get(0).getSolucao().set(i, mae.getSolucao().get(i));
             filhos.get(1).getSolucao().set(i, pai.getSolucao().get(i));

@@ -16,27 +16,58 @@ public class BuscaFeixe {
     public BuscaFeixe() {
     }
     
+    public ArrayList<Mochila> buscaEmFeixe(ArrayList<Mochila> populacaoInicial, int geracoes){
+        ArrayList<Mochila> populacaoFeixe = new ArrayList<Mochila>();
+        
+        
+        for (int i = 0; i < geracoes; i++) {//Gerações
+            for (int j = 0; j < populacaoInicial.size(); j++) {//Gerando Vizinhos
+                populacaoFeixe.add(populacaoInicial.get(j));//Adiciona 
+                
+                ArrayList<Mochila> vizinhos = vizinhos(populacaoInicial.get(j));
+                for(Mochila mochila : vizinhos){
+                    populacaoFeixe.add(mochila);
+                }
+            }
+        }
+        
+        return populacaoFeixe;
+    }
     
-    public ArrayList<Mochila> Vizinhos(Mochila mochila){
+    public ArrayList<Mochila> vizinhos(Mochila mochila){
         Algoritmo alg = new Algoritmo();
         ArrayList <Mochila> vizinhos  = new ArrayList<Mochila>();
-        vizinhos.add(alg.clonaMochila(mochila));
-        vizinhos.add(alg.clonaMochila(mochila));
-        
+               
+        Mochila mochilaAux = new Mochila();
         //vizinho superior (x+1) -> O ultimo elemento da solução recebe o proximo da estante
-        vizinhos.get(1).getSolucao().set(vizinhos.get(1).getMochilaCheia(), 
-                vizinhos.get(1).getSolucao().get(vizinhos.get(1).getMochilaCheia() +1));
-        //vizinho inferior (x-1) -> O primeiro elemento da solução recebe o ultimo da estante
-        vizinhos.get(0).getSolucao().set(0, vizinhos.get(1).getSolucao().get(vizinhos.get(0).getSolucao().size() -1) );
-        System.out.println("Mochila original: ");
-        mochila.imprimeMochila();
-        System.out.println("Vizinho superior: ");
-        vizinhos.get(1).atualizaMochila();
-        vizinhos.get(1).imprimeMochila();
-        System.out.println("Vizinho Inferior: ");
-        vizinhos.get(0).atualizaMochila();
-        vizinhos.get(0).imprimeMochila();
+        for (int i = 0; i < mochila.getSolucao().size() -1 ; i++) {
+            mochilaAux.getSolucao().add(mochila.getSolucao().get(i+1));                       
+        }
+        mochilaAux.getSolucao().add(mochila.getSolucao().get(0));
         
+        //vizinho inferior (x-1) -> O primeiro elemento da solução recebe o ultimo da estante
+       
+        vizinhos.add(alg.clonaMochila(mochilaAux));
+        vizinhos.get(0).atualizaMochila();
+        
+        mochilaAux = new Mochila();
+        mochilaAux.getSolucao().add(mochila.getSolucao().get(27));
+        for (int i = 0; i < mochila.getSolucao().size() -2 ; i++) {
+            mochilaAux.getSolucao().add(mochila.getSolucao().get(i+1));                       
+        }
+        vizinhos.add(alg.clonaMochila(mochilaAux));
+         vizinhos.get(1).atualizaMochila();
+        
+        
+//        System.out.println("Mochila original: ");
+//        mochila.imprimeMochila();
+//        System.out.println("Vizinho superior: ");
+//       
+//        vizinhos.get(1).imprimeMochila();
+//        System.out.println("Vizinho Inferior: ");
+//        
+//        vizinhos.get(0).imprimeMochila();
+       
         
         
         return vizinhos;
