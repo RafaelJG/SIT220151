@@ -27,8 +27,8 @@ public class Algoritmo {
         ArrayList<Mochila> filhos = new ArrayList<>();
         int pontoTroca = 0;
         int tamPMX = 0;
-        filhos.add(new Mochila(pai.getSolucao()));
-        filhos.add(new Mochila(mae.getSolucao()));
+        filhos.add(clonaMochila(pai));
+        filhos.add(clonaMochila(mae));
 
         if(Maior(pai.getMochilaCheia(),mae.getMochilaCheia())){
             tamPMX = mae.getMochilaCheia()/2;
@@ -38,12 +38,14 @@ public class Algoritmo {
             tamPMX = pai.getMochilaCheia()/2;
             pontoTroca = mae.getMochilaCheia() - tamPMX - 2;
         }
-        System.out.println("PMX");
+        
+        System.out.println("PMX");        
         
         for(int i = pontoTroca; i<=pontoTroca + tamPMX; i++){
             filhos.get(0).getSolucao().set(i, mae.getSolucao().get(i));
             filhos.get(1).getSolucao().set(i, pai.getSolucao().get(i));  
         }
+        
         System.out.println("Pai:");
         pai.imprimeMochila();
         System.out.println("Mãe");
@@ -54,15 +56,35 @@ public class Algoritmo {
         filhos.get(1).imprimeMochila();
         
         
+        for(Mochila filho : filhos){
+            filho.atualizaMochila();
+        }
         
         return filhos;
     
     
     }
+    
     boolean Maior(int num1, int num2){
         if(num1>num2) return true;
         else return false;
         
+    }
+    
+    Mochila clonaMochila(Mochila mochila){
+        
+        Mochila mochilaCopiada = new Mochila();
+        
+        for(Item item : mochila.getSolucao()){
+            mochilaCopiada.addItem(item);
+        }
+        
+        mochilaCopiada.setCapacidade(mochila.getCapacidade());
+        mochilaCopiada.setMochilaCheia(mochila.getMochilaCheia());
+        mochilaCopiada.setPeso(mochila.getPeso());
+        mochilaCopiada.setValor(mochila.getValor());
+        
+        return mochilaCopiada;
     }
     
 }

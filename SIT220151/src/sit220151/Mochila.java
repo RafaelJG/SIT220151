@@ -53,28 +53,29 @@ public class Mochila {
             System.out.print(solucao.get(i).getId()+"\t");
             
         }
-//        System.out.println("");
-//        
-//        for(int i = 0; i<=mochilaCheia; i++){
-//            System.out.print(solucao.get(i).getValor()+"\t");
-//            
-//        }
-//        System.out.println("");
-//        
-//        for(int i = 0; i<=mochilaCheia; i++){
-//            System.out.print(solucao.get(i).getPeso()+"\t");
-//            
-//        }
+        System.out.println("");
+        
+        for(int i = 0; i<=mochilaCheia; i++){
+            System.out.print(solucao.get(i).getValor()+"\t");
+            
+        }
+        System.out.println("");
+        
+        for(int i = 0; i<=mochilaCheia; i++){
+            System.out.print(solucao.get(i).getPeso()+"\t");
+            
+        }
+
         System.out.println("");
         System.out.println("Peso da mochila:"+peso+"Valor da Mochila:"+valor);
-        
-        
     }
+    
     public void addItem(Item item){
         this.solucao.add(item);
         this.peso+= item.getPeso();
         this.valor+= item.getValor();
     }
+    
     public int getPeso() {
         return peso;
     }
@@ -95,7 +96,12 @@ public class Mochila {
     }
 
 
-    
-    
-    
+    public void atualizaMochila(){
+        this.peso = 0;
+        this.valor = 0;
+        for(Item item : this.solucao){
+            this.peso+=item.getPeso();
+            this.valor+=item.getValor();
+        }
+    }
 }
