@@ -99,9 +99,10 @@ public class Mochila {
     public void atualizaMochila(){
         this.peso = 0;
         this.valor = 0;
-        for(Item item : this.solucao){
-            this.peso+=item.getPeso();
-            this.valor+=item.getValor();
+        //for(Item item : this.solucao){
+        for(int i = 0; i<= this.mochilaCheia; i++){
+            this.peso+=solucao.get(i).getPeso();
+            this.valor+=solucao.get(i).getValor();
         }
     }
 }
