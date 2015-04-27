@@ -94,15 +94,21 @@ public class Mochila {
     public void setSolucao(ArrayList<Item> solucao) {
         this.solucao = solucao;
     }
-
+    
 
     public void atualizaMochila(){
         this.peso = 0;
         this.valor = 0;
-        //for(Item item : this.solucao){
-        for(int i = 0; i<= this.mochilaCheia; i++){
-            this.peso+=solucao.get(i).getPeso();
-            this.valor+=solucao.get(i).getValor();
+        
+        for (int i = 0; i < solucao.size(); i++) {
+            if(this.peso + solucao.get(i).getPeso() < 28){
+                this.peso += solucao.get(i).getPeso();
+                this.valor += solucao.get(i).getValor();
+                this.mochilaCheia = i;                
+            }
+            else{
+                i = this.solucao.size(); // força a saída do laço
+            }
         }
     }
 }
