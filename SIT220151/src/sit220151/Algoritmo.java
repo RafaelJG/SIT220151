@@ -6,6 +6,7 @@
 package sit220151;
 
 import java.util.ArrayList;
+import org.omg.CORBA.INTERNAL;
 
 /**
  *
@@ -24,53 +25,11 @@ public class Algoritmo {
 //    }
     
     
+   
     
     
-    ArrayList<Mochila> PMX (Mochila pai, Mochila mae){
-        
-        
-        ArrayList<Mochila> filhos = new ArrayList<>();
-        int pontoTroca = 0;
-        int tamPMX = 0;
-        filhos.add(clonaMochila(pai));
-        filhos.add(clonaMochila(mae));
-
-        if(Maior(pai.getMochilaCheia(),mae.getMochilaCheia())){
-            tamPMX = mae.getMochilaCheia()/2;
-            pontoTroca = mae.getMochilaCheia() - tamPMX - 2;
-        }
-        else{
-            tamPMX = pai.getMochilaCheia()/2;
-            pontoTroca = mae.getMochilaCheia() - tamPMX - 2;
-        }
-        
-        System.out.println("PMX");        
-        
-        for(int i = pontoTroca; i<pontoTroca + tamPMX; i++){           
-            
-            filhos.get(0).getSolucao().set(i, mae.getSolucao().get(i));
-            filhos.get(1).getSolucao().set(i, pai.getSolucao().get(i));
-        }
-        
-        
-        
-        for(Mochila filho : filhos){
-            filho.atualizaMochila();
-        }
-        
-        System.out.println("Pai:");
-        pai.imprimeMochila();
-        System.out.println("Mãe");
-        mae.imprimeMochila();
-        System.out.println("Filho 1:");
-        filhos.get(0).imprimeMochila();
-        System.out.println("Filho 2:");
-        filhos.get(1).imprimeMochila();
-        
-        return filhos;
-    }
     
-    boolean Maior(int num1, int num2){
+    boolean maior(int num1, int num2){
         if(num1>num2) return true;
         else return false;
         
@@ -88,6 +47,9 @@ public class Algoritmo {
         mochilaCopiada.setMochilaCheia(mochila.getMochilaCheia());
         mochilaCopiada.setPeso(mochila.getPeso());
         mochilaCopiada.setValor(mochila.getValor());
+        mochilaCopiada.setProbabilidade(mochila.getProbabilidade());
+        mochilaCopiada.setRoleta(mochila.getRoleta());
+        
         
         return mochilaCopiada;
     }

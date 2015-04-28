@@ -18,7 +18,9 @@ public class Mochila {
     private int valor;
     private int mochilaCheia;  //index do ultimo elemento da solução**
     private double probabilidade;
-
+    private double roleta;
+    
+    
     public int getMochilaCheia() {
         return mochilaCheia;
     }
@@ -97,8 +99,7 @@ public class Mochila {
     }
     public void setSolucao(ArrayList<Item> solucao) {
         this.solucao = solucao;
-    }
-    
+    }    
 
     public void atualizaMochila(){
         this.peso = 0;
@@ -122,6 +123,14 @@ public class Mochila {
 
     public void setProbabilidade(double probabilidade) {
         this.probabilidade = probabilidade;
+    }
+
+    public double getRoleta() {
+        return roleta;
+    }
+
+    public void setRoleta(double roleta) {
+        this.roleta = roleta;
     }
     
     public Item getItemSolucaoById(int id){
