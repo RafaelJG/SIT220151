@@ -28,27 +28,30 @@ public class SIT220151 {
         
         System.out.println("Entre com o tamanho da população inicial:");
         int tamanhoPopulacaoInicial = teclado.nextInt();
+        System.out.println("Entre com o número de iterações");
+        int geracoes = teclado.nextInt();
         
         populacaoInicial = solucionador.gerarSolucao(tamanhoPopulacaoInicial);
         
                 
 //        algoritmo.PMX(solucionador.gerarSolucao(),solucionador.gerarSolucao());
         System.out.println("População Inicial:");
-        for(Mochila mochila : populacaoInicial)
+        for(Mochila mochila : populacaoInicial){
             mochila.imprimeMochila();
+        }
+        System.out.println("____________________________________________________");
+        ArrayList<Mochila> populacaoFeixe = feixe.buscaEmFeixe(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
+        System.out.println("População feixe:");
+        for(Mochila mochila : populacaoFeixe){
+            mochila.imprimeMochila();
+        }
+        
+        
         
       
         
-        
-//        System.out.println("População depois do SORT:");
-//        
-//        for(Mochila mochila : populacaoInicial){
-//            mochila.imprimeMochila();
-//        }
-        System.out.println("População do feixe:");
-        for(Mochila nova :feixe.buscaEmFeixe(populacaoInicial, tamanhoPopulacaoInicial)){
-            nova.imprimeMochila();
-        }
+
+
         
         }
         

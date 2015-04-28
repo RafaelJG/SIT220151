@@ -20,11 +20,11 @@ public class Darwin {
         ArrayList<Mochila> populacaoAtualizada = new ArrayList<>();
         
         //tentando usar método do Java para realizar o corte na populacao, se nao der certo usar o for comentado
-        populacaoAtualizada = new ArrayList<Mochila>(populacao.subList(0, tamanho-1));
+       // populacaoAtualizada = new ArrayList<Mochila>(populacao.subList(0, tamanho-1));
         
-//        for (int i = 0; i < tamanho; i++) {
-//            populacaoAtualizada.add(populacao.get(i));
-//        }
+        for (int i = 0; i < tamanho; i++) {
+            populacaoAtualizada.add(populacao.get(i));
+        }
         
         return populacaoAtualizada;
     }

@@ -16,7 +16,7 @@ public class BuscaFeixe {
     public BuscaFeixe() {
     }
     
-    public ArrayList<Mochila> buscaEmFeixe(ArrayList<Mochila> populacaoInicial, int geracoes){
+    public ArrayList<Mochila> buscaEmFeixe(ArrayList<Mochila> populacaoInicial, int geracoes, int tamanhoPopulacao){
         ArrayList<Mochila> populacaoFeixe = new ArrayList<Mochila>();
         
         
@@ -29,6 +29,8 @@ public class BuscaFeixe {
                     populacaoFeixe.add(mochila);
                 }
             }
+            //CHAMA O DARVI
+           populacaoFeixe = Darwin.atualizaPopulacao(populacaoFeixe, tamanhoPopulacao);            
         }
         
         return populacaoFeixe;
