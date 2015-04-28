@@ -48,7 +48,9 @@ public class SIT220151 {
         
         AlgGenetico ag = new AlgGenetico();
         
-        ag.calculaProbabilidadesPopulacao(populacaoInicial);
+//        ag.calculaProbabilidadesPopulacao(populacaoInicial);
+        
+        ag.algoritmoGenetico(populacaoInicial, tamanhoPopulacaoInicial);
         
       
         
