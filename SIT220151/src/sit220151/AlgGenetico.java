@@ -41,7 +41,7 @@ public class AlgGenetico {
     public ArrayList<Mochila> roleta(ArrayList<Mochila> populacao){
         ArrayList<Mochila> casal = new ArrayList<Mochila>();
         
-        int random = 
+        int random = 0;
         
         return casal;
     }
