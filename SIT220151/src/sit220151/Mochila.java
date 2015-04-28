@@ -124,5 +124,12 @@ public class Mochila {
         this.probabilidade = probabilidade;
     }
     
-    
+    public Item getItemSolucaoById(int id){
+        for(Item item : this.solucao){
+            if(item.getId() == id){
+                return item;
+            }
+        }
+        return null;
+    }
 }
