@@ -39,14 +39,16 @@ public class SIT220151 {
         for(Mochila mochila : populacaoInicial){
             mochila.imprimeMochila();
         }
-        System.out.println("____________________________________________________");
-        ArrayList<Mochila> populacaoFeixe = feixe.buscaEmFeixe(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
-        System.out.println("População feixe:");
-        for(Mochila mochila : populacaoFeixe){
-            mochila.imprimeMochila();
-        }
+//        System.out.println("____________________________________________________");
+//        ArrayList<Mochila> populacaoFeixe = feixe.buscaEmFeixe(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
+//        System.out.println("População feixe:");
+//        for(Mochila mochila : populacaoFeixe){
+//            mochila.imprimeMochila();
+//        }
         
+        AlgGenetico ag = new AlgGenetico();
         
+        ag.calculaProbabilidadesPopulacao(populacaoInicial);
         
       
         

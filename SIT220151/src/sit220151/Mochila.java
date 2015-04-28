@@ -17,6 +17,7 @@ public class Mochila {
     private ArrayList<Item> solucao = new ArrayList<>();
     private int valor;
     private int mochilaCheia;  //index do ultimo elemento da solução**
+    private double probabilidade;
 
     public int getMochilaCheia() {
         return mochilaCheia;
@@ -114,4 +115,14 @@ public class Mochila {
             }
         }
     }
+
+    public double getProbabilidade() {
+        return probabilidade;
+    }
+
+    public void setProbabilidade(double probabilidade) {
+        this.probabilidade = probabilidade;
+    }
+    
+    
 }
