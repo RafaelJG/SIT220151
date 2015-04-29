@@ -16,17 +16,18 @@ public class AlgGenetico {
         
 
         ArrayList<Mochila> populacaoAlgGen = (ArrayList<Mochila>)populacaoInicial.clone();
+        ArrayList<Mochila> jonathan = new ArrayList<>();
         Mochila solucao = new Mochila();
 
         //Calcular probabilidades
         calculaProbabilidadesPopulacao(populacaoAlgGen);        
         
         //Girar a roleta para montar os casais || Definir quantos casais?!?!?!
-        ArrayList<Mochila> casal = new ArrayList<>();
+        ArrayList<Mochila> casal;
         
         for (int i = 0; i < geracoes; i++) { //FOR gerações
             
-//            for (int j = 0; j < tamanhoPopulacao; j++) {//FOR percorre populacao
+            for (int j = 0; j < tamanhoPopulacao; j++) {//FOR percorre populacao
                 
 //                System.out.println("Casal "+(j+1)+" :");
                 casal = new ArrayList<>();
@@ -40,31 +41,23 @@ public class AlgGenetico {
                     populacaoAlgGen.add((Mochila) mochila.clone());
                 }
                 
-                calculaProbabilidadesPopulacao(populacaoAlgGen);   
-                
-//                for (int k = 0; k < 2; k++) { // FOR do casal
-//                    casal.add((Mochila) populacaoInicial.get(k).clone());
-////                    System.out.println("Membro "+(k+1)+" do casal: ");
-////                    System.out.println(casal.get(k).getProbabilidade() + " - " + casal.get(k).getRoleta());
-//
-//                    for (int l = 0; l < 2; l++) {
-//                        casal.add((Mochila)roleta(populacaoInicial).clone());
-////                        System.out.println("Membro "+(l+1)+" do casal: ");
-////                        System.out.println(casal.get(l).getProbabilidade() + " - " + casal.get(l).getRoleta());
-//
-//                    }
-//                    //Mandar as mochilas cruzarem aumentando a população
-//                    //Funcao PMX que retona dois filhos a partir do casal
-//                    
-//
-//                }
-//            }
+            }
+            
+            calculaProbabilidadesPopulacao(populacaoAlgGen);
+            //No final da Geração a populacao esta com o dobro de individuos
+            
+            for (int j = 0; j < tamanhoPopulacao; j++) {
+                jonathan.add((Mochila)roleta(populacaoAlgGen).clone());
+            }
+            populacaoAlgGen = new ArrayList<Mochila>();
+            populacaoAlgGen = (ArrayList<Mochila>)jonathan.clone();
+            
+            calculaProbabilidadesPopulacao(populacaoAlgGen);            
         }
-        //Recalcular as probabilidades
         
-        //Girar a roleta pra ver quem sobrevive à essa geração
+        Darwin.atualizaPopulacao(populacaoAlgGen, tamanhoPopulacao);
         
-        return solucao;
+        return (Mochila)populacaoAlgGen.get(0).clone();
     }
     
     public void calculaProbabilidadesPopulacao(ArrayList<Mochila> populacao){
