@@ -16,7 +16,7 @@ public class AlgGenetico {
         
 
         ArrayList<Mochila> populacaoAlgGen = (ArrayList<Mochila>)populacaoInicial.clone();
-        ArrayList<Mochila> jonathan = new ArrayList<>();
+        ArrayList<Mochila> jonathan = (ArrayList<Mochila>)populacaoInicial.clone();
         Mochila solucao = new Mochila();
 
         //Calcular probabilidades
@@ -26,6 +26,9 @@ public class AlgGenetico {
         ArrayList<Mochila> casal;
         
         for (int i = 0; i < geracoes; i++) { //FOR gerações
+             populacaoAlgGen = new ArrayList<Mochila>();
+            populacaoAlgGen = (ArrayList<Mochila>)jonathan.clone();
+            
             
             for (int j = 0; j < tamanhoPopulacao; j++) {//FOR percorre populacao
                 
@@ -38,6 +41,7 @@ public class AlgGenetico {
                 ArrayList<Mochila> filhos = PMX(casal);
                 
                 for(Mochila mochila : filhos){
+                    
                     populacaoAlgGen.add((Mochila) mochila.clone());
                 }
                 
@@ -45,17 +49,15 @@ public class AlgGenetico {
             
             calculaProbabilidadesPopulacao(populacaoAlgGen);
             //No final da Geração a populacao esta com o dobro de individuos
-            
+
             for (int j = 0; j < tamanhoPopulacao; j++) {
                 jonathan.add((Mochila)roleta(populacaoAlgGen).clone());
             }
-            populacaoAlgGen = new ArrayList<Mochila>();
-            populacaoAlgGen = (ArrayList<Mochila>)jonathan.clone();
-            
-            calculaProbabilidadesPopulacao(populacaoAlgGen);            
+           
+            calculaProbabilidadesPopulacao(jonathan);            
         }
         
-        Darwin.atualizaPopulacao(populacaoAlgGen, tamanhoPopulacao);
+        Darwin.atualizaPopulacao(jonathan, tamanhoPopulacao);
         
         return (Mochila)populacaoAlgGen.get(0).clone();
     }
@@ -176,7 +178,8 @@ public class AlgGenetico {
         }
         
         for(Mochila filho : filhos){
-            System.out.println("FILHO:");
+//            System.out.println("FILHO:");
+            filho.mutacao();
             filho.atualizaMochila();
          //   filho.imprimeMochila();
             filho.temGenteIgual(filho);

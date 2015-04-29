@@ -53,9 +53,9 @@ public class SIT220151 {
 //        
 
         
-        ag.calculaProbabilidadesPopulacao(populacaoInicial);
-        
-        ag.algoritmoGenetico(populacaoInicial, 10,tamanhoPopulacaoInicial);
+//        ag.calculaProbabilidadesPopulacao(populacaoInicial);
+        solucaoAG.imprimeMochila();
+//        ag.algoritmoGenetico(populacaoInicial, 10,tamanhoPopulacaoInicial).imprimeMochila();
         
       
         

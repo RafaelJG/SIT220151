@@ -6,6 +6,7 @@
 package sit220151;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -157,13 +158,27 @@ public class Mochila implements Cloneable{
         atual = m.getSolucao().get(i).getId();
         for (int j = 0; j < m.getSolucao().size(); j++) {
             if(i!=j && m.getSolucao().get(j).getId() == atual){
-                System.out.println("AFF MANO");
+//                System.out.println("AFF MANO");
                 return true;
             }
         }
     }
-    System.out.println("DUDUDUDU");
+//    System.out.println("DUDUDUDU");
     return false;
+    
+    }
+    
+    public void mutacao(){
+        int random1 = 0;
+        int random2 = 0;
+        Random gerador = new Random();
+        random1 = gerador.nextInt(26)+1;
+        random2 = gerador.nextInt(26)+1;
+        Item itemAux = new Item(0, 0, 0);
+        itemAux = (Item) getSolucao().get(random1);
+        getSolucao().set(random1, getSolucao().get(random2));
+        getSolucao().set(random2, itemAux);
+         
     
     }
 }

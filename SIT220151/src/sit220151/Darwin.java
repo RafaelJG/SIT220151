@@ -24,6 +24,7 @@ public class Darwin {
         
         for (int i = 0; i < tamanho; i++) {
             populacaoAtualizada.add(populacao.get(i));
+//            System.out.println("VALOR:"+populacao.get(i).getValor());
         }
         
         return populacaoAtualizada;
