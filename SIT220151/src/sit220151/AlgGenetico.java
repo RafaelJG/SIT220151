@@ -77,11 +77,19 @@ public class AlgGenetico {
         
         for (int i = 0; i < populacao.size(); i++) {
             
+            //Checar o primeiro
+            
+            if(i == 0){
+                if(random > populacao.get(i).getProbabilidade() &&
+                   random <= 1){
+                    return (Mochila) populacao.get(i).clone();
+                }
+            }            
             if(i == populacao.size()-1){//Ultimo individuo da populacao e com menor probabilidade
-                if(populacao.get(i).getProbabilidade()<random &&
-                   populacao.get(i).getProbabilidade() > 0){
+                if(random < populacao.get(i).getProbabilidade() &&
+                   random >= 0){
                     return (Mochila)populacao.get(i).clone();
-                }                    
+                }
             }
             else{
                 if(populacao.get(i).getProbabilidade() > random && 
