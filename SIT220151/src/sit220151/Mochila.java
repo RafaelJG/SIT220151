@@ -73,7 +73,7 @@ public class Mochila implements Cloneable{
 //        }
 
         System.out.println("");
-        System.out.println("Peso da mochila:"+peso+"Valor da Mochila:"+valor);
+        System.out.println("Peso da mochila:"+peso+" | Valor da Mochila:"+valor);
     }
     
     public void addItem(Item item){

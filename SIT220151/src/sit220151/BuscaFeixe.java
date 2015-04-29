@@ -6,6 +6,8 @@
 package sit220151;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  *
@@ -16,7 +18,7 @@ public class BuscaFeixe {
     public BuscaFeixe() {
     }
     
-    public ArrayList<Mochila> buscaEmFeixe(ArrayList<Mochila> populacaoInicial, int geracoes, int tamanhoPopulacao){
+    public Mochila buscaEmFeixe(ArrayList<Mochila> populacaoInicial, int geracoes, int tamanhoPopulacao){
         
         ArrayList<Mochila> populacaoFeixe = new ArrayList<Mochila>();
         
@@ -35,12 +37,16 @@ public class BuscaFeixe {
             //CHAMA O DARVI
            populacaoFeixe = Darwin.atualizaPopulacao(populacaoFeixe, tamanhoPopulacao);
            
+           //Embaralha TUTO
+            Collections.shuffle(populacaoFeixe);
+           
            //Quando só tiver soluções iguais ele para
-           
-           
+                     
         }
         
-        return populacaoFeixe;
+        populacaoFeixe = Darwin.atualizaPopulacao(populacaoFeixe, tamanhoPopulacao);
+        
+        return populacaoFeixe.get(0);
     }
     
     public ArrayList<Mochila> vizinhos(Mochila mochilaA){
@@ -85,16 +91,16 @@ public class BuscaFeixe {
 //        
 //        vizinhos.get(0).imprimeMochila();
        
-        
-        
         return vizinhos;
     
     }
     
     public boolean soTemNegoIgual(ArrayList<Mochila> populacao){
-        
-        
-        
-        return false;
+        Mochila mochilaAux = (Mochila)populacao.get(0).clone();
+        for (int i = 0; i < populacao.size(); i++) {
+            if(!mochilaAux.equals(populacao.get(i+1)))
+                return false;
+        }
+        return true;
     }
 }

@@ -21,10 +21,11 @@ public class SIT220151 {
     public static void main(String[] args) {
         // TODO code application logic here
         Solucionador solucionador = new Solucionador();
-        Algoritmo algoritmo = new Algoritmo();
+
         Scanner teclado = new Scanner(System.in);
         ArrayList<Mochila> populacaoInicial = new ArrayList<>();
         BuscaFeixe feixe = new BuscaFeixe();
+        AlgGenetico ag = new AlgGenetico();
         
         System.out.println("Entre com o tamanho da população inicial:");
         int tamanhoPopulacaoInicial = teclado.nextInt();
@@ -35,18 +36,22 @@ public class SIT220151 {
         
                 
 //        algoritmo.PMX(solucionador.gerarSolucao(),solucionador.gerarSolucao());
-        System.out.println("População Inicial:");
-        for(Mochila mochila : populacaoInicial){
-            mochila.imprimeMochila();
-        }
+//        System.out.println("População Inicial:");
+//        for(Mochila mochila : populacaoInicial){
+//            mochila.imprimeMochila();
+//        }
         System.out.println("____________________________________________________");
-        ArrayList<Mochila> populacaoFeixe = feixe.buscaEmFeixe(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
-        System.out.println("População feixe:");
-        for(Mochila mochila : populacaoFeixe){
-            mochila.imprimeMochila();
-        }
+        Mochila solucaoFeixe = feixe.buscaEmFeixe(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
         
-//        AlgGenetico ag = new AlgGenetico();
+        System.out.println("Após " + geracoes + " com população inicial de " + tamanhoPopulacaoInicial + " mochilas.");
+        
+        System.out.println("Solução Busca em Feixe:");
+        solucaoFeixe.imprimeMochila();
+        
+//        System.out.println("____________________________________________________");
+//        Mochila solucaoAG = ag.algoritmoGenetico(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
+//        
+
         
 //        ag.calculaProbabilidadesPopulacao(populacaoInicial);
         
