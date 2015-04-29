@@ -19,32 +19,46 @@ public class AlgGenetico {
         Mochila solucao = new Mochila();
 
         //Calcular probabilidades
-        calculaProbabilidadesPopulacao(populacaoInicial);        
+        calculaProbabilidadesPopulacao(populacaoAlgGen);        
         
         //Girar a roleta para montar os casais || Definir quantos casais?!?!?!
         ArrayList<Mochila> casal = new ArrayList<>();
-        for (int i = 0; i < geracoes; i++) {         
+        
+        for (int i = 0; i < geracoes; i++) { //FOR gerações
             
-            for (int j = 0; j < tamanhoPopulacao/2; j++) {
-                System.out.println("Casal "+(j+1)+" :");
+//            for (int j = 0; j < tamanhoPopulacao; j++) {//FOR percorre populacao
+                
+//                System.out.println("Casal "+(j+1)+" :");
                 casal = new ArrayList<>();
-                for (int k = 0; k < 2; k++) {
-                    casal.add((Mochila) populacaoInicial.get(k).clone());
-//                    System.out.println("Membro "+(k+1)+" do casal: ");
-//                    System.out.println(casal.get(k).getProbabilidade() + " - " + casal.get(k).getRoleta());
-
-                    for (int l = 0; l < 2; l++) {
-                        casal.add((Mochila)roleta(populacaoInicial).clone());
-//                        System.out.println("Membro "+(l+1)+" do casal: ");
-//                        System.out.println(casal.get(l).getProbabilidade() + " - " + casal.get(l).getRoleta());
-
-                    }
-                    //Mandar as mochilas cruzarem aumentando a população
-                    //Funcao PMX que retona dois filhos a partir do casal
-                    PMX(casal);
-
+                
+                casal.add((Mochila)roleta(populacaoAlgGen).clone()); //Pai 
+                casal.add((Mochila)roleta(populacaoAlgGen).clone()); // Mae
+                
+                ArrayList<Mochila> filhos = PMX(casal);
+                
+                for(Mochila mochila : filhos){
+                    populacaoAlgGen.add((Mochila) mochila.clone());
                 }
-            }
+                
+                calculaProbabilidadesPopulacao(populacaoAlgGen);   
+                
+//                for (int k = 0; k < 2; k++) { // FOR do casal
+//                    casal.add((Mochila) populacaoInicial.get(k).clone());
+////                    System.out.println("Membro "+(k+1)+" do casal: ");
+////                    System.out.println(casal.get(k).getProbabilidade() + " - " + casal.get(k).getRoleta());
+//
+//                    for (int l = 0; l < 2; l++) {
+//                        casal.add((Mochila)roleta(populacaoInicial).clone());
+////                        System.out.println("Membro "+(l+1)+" do casal: ");
+////                        System.out.println(casal.get(l).getProbabilidade() + " - " + casal.get(l).getRoleta());
+//
+//                    }
+//                    //Mandar as mochilas cruzarem aumentando a população
+//                    //Funcao PMX que retona dois filhos a partir do casal
+//                    
+//
+//                }
+//            }
         }
         //Recalcular as probabilidades
         
@@ -101,6 +115,7 @@ public class AlgGenetico {
         
         return null;
     }
+    
     ArrayList<Mochila> PMX (ArrayList<Mochila> casal){
         
         
