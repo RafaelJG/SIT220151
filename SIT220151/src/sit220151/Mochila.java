@@ -151,4 +151,21 @@ public class Mochila implements Cloneable{
             return this;
         }
     }
+    public boolean temGenteIgual(Mochila m){
+    int atual;
+        for (int i = 0; i < m.getSolucao().size(); i++) {
+            atual = m.getSolucao().get(i).getId();
+            for (int j = 0; j < m.getSolucao().size(); j++) {
+                if(i!=j && m.getSolucao().get(j).getId() == atual){
+                    System.out.println("AFF MANO");
+                    return true;
+                }
+                
+                
+            }
+        }
+        System.out.println("DUDUDUDU");
+        return false;
+    
+    }
 }

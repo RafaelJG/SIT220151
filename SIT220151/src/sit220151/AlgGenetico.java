@@ -30,13 +30,13 @@ public class AlgGenetico {
                 casal = new ArrayList<>();
                 for (int k = 0; k < 2; k++) {
                     casal.add((Mochila) populacaoInicial.get(k).clone());
-                    System.out.println("Membro "+(k+1)+" do casal: ");
-                    System.out.println(casal.get(k).getProbabilidade() + " - " + casal.get(k).getRoleta());
+//                    System.out.println("Membro "+(k+1)+" do casal: ");
+//                    System.out.println(casal.get(k).getProbabilidade() + " - " + casal.get(k).getRoleta());
 
                     for (int l = 0; l < 2; l++) {
                         casal.add((Mochila)roleta(populacaoInicial).clone());
-                        System.out.println("Membro "+(l+1)+" do casal: ");
-                        System.out.println(casal.get(l).getProbabilidade() + " - " + casal.get(l).getRoleta());
+//                        System.out.println("Membro "+(l+1)+" do casal: ");
+//                        System.out.println(casal.get(l).getProbabilidade() + " - " + casal.get(l).getRoleta());
 
                     }
                     //Mandar as mochilas cruzarem aumentando a população
@@ -109,6 +109,8 @@ public class AlgGenetico {
 //        filhos.add((Mochila) casal.get(1).clone()); //mae
         filhos.add(new Mochila());
         filhos.add(new Mochila());
+//        casal.get(0).imprimeMochila();
+//        casal.get(1).imprimeMochila();
         if(algoritmo.maior(casal.get(0).getMochilaCheia(), casal.get(1).getMochilaCheia())){
             
             tamPMX = casal.get(0).getMochilaCheia()/2;
@@ -122,25 +124,26 @@ public class AlgGenetico {
             //preenchendo as equivalencias iniciais
 
             aux1[casal.get(0).getSolucao().get(i).getId()] = casal.get(1).getSolucao().get(i).getId(); 
-            System.out.println("Aux["+casal.get(0).getSolucao().get(i).getId()+"] = "+aux1[casal.get(0).getSolucao().get(i).getId()]);
+//            System.out.println("Aux["+casal.get(0).getSolucao().get(i).getId()+"] = "+aux1[casal.get(0).getSolucao().get(i).getId()]);
             aux2[casal.get(1).getSolucao().get(i).getId()] = casal.get(0).getSolucao().get(i).getId(); 
-            System.out.println("Aux2["+casal.get(1).getSolucao().get(i).getId()+"] = "+aux2[casal.get(1).getSolucao().get(i).getId()]);
+//            System.out.println("Aux2["+casal.get(1).getSolucao().get(i).getId()+"] = "+aux2[casal.get(1).getSolucao().get(i).getId()]);
             
         }
-        System.out.println("Aux1:");
-        for (int i = 0; i < aux1.length; i++) {
-            System.out.print("\t"+aux1[i]+" ");
-        }
-        System.out.println("");
-        System.out.println("Aux2:");
-        for (int i = 0; i < aux2.length; i++) {
-            System.out.print("\t"+aux2[i]+" ");           
-        }
+//        System.out.println("Aux1:");
+//        for (int i = 0; i < aux1.length; i++) {
+//            System.out.print("\t"+aux1[i]+" ");
+//        }
+//        System.out.println("");
+//        System.out.println("Aux2:");
+//        for (int i = 0; i < aux2.length; i++) {
+//            System.out.print("\t"+aux2[i]+" ");           
+//        }
         for (int i = 0; i <tamPMX ; i++) {
 
-            filhos.get(1).getSolucao().add(casal.get(0).getSolucao().get(i));
-            filhos.get(0).getSolucao().add(casal.get(1).getSolucao().get(i));      
+            filhos.get(1).getSolucao().add(casal.get(1).getSolucao().get(i));
+            filhos.get(0).getSolucao().add(casal.get(0).getSolucao().get(i));      
         }
+
 //        for (int i = 0; i <pontoCross ; i++) {
 //
 //            filhos.get(0).getSolucao().add(casal.get(0).getSolucao().get(podeTrocar(i, aux1)));
@@ -148,32 +151,32 @@ public class AlgGenetico {
 //        }
 
         for (int i =tamPMX; i <casal.get(0).getSolucao().size() ; i++) {
-            if(podeTrocar(i, aux1)){
-                filhos.get(0).getSolucao().add(casal.get(0).getSolucao().get(i));
-                
-            }else System.out.println("NAO PODE"); 
-               if(podeTrocar(i, aux1)){
-                filhos.get(1).getSolucao().add(casal.get(1).getSolucao().get(i)); 
-            }else System.out.println("NAO PODE");
+                filhos.get(0).getSolucao().add(casal.get(1).
+                        getItemSolucaoById(podeTrocar(casal.get(1).getSolucao().get(i).getId(), aux1)));
+                filhos.get(1).getSolucao().add(casal.get(0).
+                        getItemSolucaoById(podeTrocar(casal.get(0).getSolucao().get(i).getId(), aux2)));
+  
+     
                 
         }
         
         for(Mochila filho : filhos){
+            System.out.println("FILHO:");
             filho.atualizaMochila();
-            filho.imprimeMochila();
+         //   filho.imprimeMochila();
+            filho.temGenteIgual(filho);
         }
 
         
         return filhos;
     }
     
-    boolean podeTrocar(int id, int[]aux){
-        int novoid = 0;
+    int podeTrocar(int id, int[]aux){
         if(aux[id]== -1){
-            return true;
+            return id;
         }
         else{
-            return false;
+            return podeTrocar(aux[id], aux);
             
         }
     

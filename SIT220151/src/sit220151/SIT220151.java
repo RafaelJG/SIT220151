@@ -40,22 +40,22 @@ public class SIT220151 {
 //        for(Mochila mochila : populacaoInicial){
 //            mochila.imprimeMochila();
 //        }
-        System.out.println("____________________________________________________");
-        Mochila solucaoFeixe = feixe.buscaEmFeixe(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
-        
-        System.out.println("Após " + geracoes + " com população inicial de " + tamanhoPopulacaoInicial + " mochilas.");
-        
-        System.out.println("Solução Busca em Feixe:");
-        solucaoFeixe.imprimeMochila();
-        
 //        System.out.println("____________________________________________________");
-//        Mochila solucaoAG = ag.algoritmoGenetico(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
+//        Mochila solucaoFeixe = feixe.buscaEmFeixe(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
+//        
+//        System.out.println("Após " + geracoes + " com população inicial de " + tamanhoPopulacaoInicial + " mochilas.");
+//        
+//        System.out.println("Solução Busca em Feixe:");
+//        solucaoFeixe.imprimeMochila();
+        
+        System.out.println("____________________________________________________");
+        Mochila solucaoAG = ag.algoritmoGenetico(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
 //        
 
         
-//        ag.calculaProbabilidadesPopulacao(populacaoInicial);
+        ag.calculaProbabilidadesPopulacao(populacaoInicial);
         
-//        ag.algoritmoGenetico(populacaoInicial, tamanhoPopulacaoInicial);
+        ag.algoritmoGenetico(populacaoInicial, 10,tamanhoPopulacaoInicial);
         
       
         
