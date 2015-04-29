@@ -41,7 +41,12 @@ public class BuscaFeixe {
             Collections.shuffle(populacaoFeixe);
            
            //Quando só tiver soluções iguais ele para
-                     
+            
+            if(soTemNegoIgual(populacaoFeixe)){
+                System.out.println("Parou na  " + i + " geração!");
+                populacaoFeixe = Darwin.atualizaPopulacao(populacaoFeixe, tamanhoPopulacao);        
+                return populacaoFeixe.get(0);
+            }
         }
         
         populacaoFeixe = Darwin.atualizaPopulacao(populacaoFeixe, tamanhoPopulacao);
@@ -96,11 +101,26 @@ public class BuscaFeixe {
     }
     
     public boolean soTemNegoIgual(ArrayList<Mochila> populacao){
-        Mochila mochilaAux = (Mochila)populacao.get(0).clone();
+        Mochila mochilaAux;
+        
         for (int i = 0; i < populacao.size(); i++) {
-            if(!mochilaAux.equals(populacao.get(i+1)))
-                return false;
+            mochilaAux = (Mochila)populacao.get(i).clone();
+            for (int j = 0; j < populacao.size(); j++){
+                if(i != j){
+                    if(!mochilaAux.getSolucao().equals(populacao.get(j).getSolucao())){
+                        return false;
+                    }
+                }
+            }
         }
+        
         return true;
+//        
+//        
+//        for (int i = 0; i < populacao.size(); i++) {
+//            if(!mochilaAux.equals(populacao.get(i+1)))
+//                return false;
+//        }
+//        return true;
     }
 }

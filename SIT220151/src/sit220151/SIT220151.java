@@ -32,37 +32,120 @@ public class SIT220151 {
         System.out.println("Entre com o número de iterações");
         int geracoes = teclado.nextInt();
         
-        populacaoInicial = solucionador.gerarSolucao(tamanhoPopulacaoInicial);
         
-                
-//        algoritmo.PMX(solucionador.gerarSolucao(),solucionador.gerarSolucao());
+        
 //        System.out.println("População Inicial:");
 //        for(Mochila mochila : populacaoInicial){
 //            mochila.imprimeMochila();
 //        }
-//        System.out.println("____________________________________________________");
-//        Mochila solucaoFeixe = feixe.buscaEmFeixe(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
+        
+        long tempoAux = 0;
+        int valorMedio = 0;
+        int pesoMedio = 0;
+        
+        //BUSCA EM FEIXE
+        
+        Mochila melhorMochilaFeixe = new Mochila();
+        for (int i = 0; i < 10; i++) {
+            
+            populacaoInicial = solucionador.gerarSolucao(tamanhoPopulacaoInicial);
+            long tempoInicialFeixe = System.currentTimeMillis();
+            Mochila solucaoFeixe = feixe.buscaEmFeixe(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
+            long tempoFinalFeixe = System.currentTimeMillis();
+            tempoAux += tempoFinalFeixe-tempoInicialFeixe;
+            System.out.println("Tempo solução "+i+" :"+(tempoFinalFeixe-tempoInicialFeixe));
+            if(i==0){
+                melhorMochilaFeixe = (Mochila) solucaoFeixe.clone();
+            }
+            else{
+                if(solucaoFeixe.getValor()>melhorMochilaFeixe.getValor()){
+                    melhorMochilaFeixe = (Mochila) solucaoFeixe.clone();
+                }
+            }           
+            
+            
+            pesoMedio += solucaoFeixe.getPeso();
+            valorMedio += solucaoFeixe.getValor();
+        }
+        
+        tempoAux = tempoAux/10;
+        pesoMedio = pesoMedio/10;
+        valorMedio = valorMedio/10;
+        
+        
+        System.out.println("____________________________________________________");
+        
+        System.out.println("Melhor Solução Busca em Feixe: ");
+        melhorMochilaFeixe.imprimeMochila();
+        
+        System.out.println("Tempo médio: " + tempoAux + "ms.");
+        System.out.println("Valor médio: " + valorMedio + " dinheiros.");
+        System.out.println("Peso médio: " + pesoMedio + "Kg");
 //        
+//        
+//        
+//        
+//        System.out.println("");
 //        System.out.println("Após " + geracoes + " com população inicial de " + tamanhoPopulacaoInicial + " mochilas.");
 //        
 //        System.out.println("Solução Busca em Feixe:");
 //        solucaoFeixe.imprimeMochila();
+//        System.out.println("Algoritmo de Busca em Feixe levou: " + (tempoFinalFeixe-tempoInicialFeixe) + " milisegundos.");
+//        System.out.println("");
         
-        System.out.println("____________________________________________________");
-        Mochila solucaoAG = ag.algoritmoGenetico(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
-//        
-
+        tempoAux = 0;
+        valorMedio = 0;
+        pesoMedio = 0;
         
-//        ag.calculaProbabilidadesPopulacao(populacaoInicial);
-        solucaoAG.imprimeMochila();
-//        ag.algoritmoGenetico(populacaoInicial, 10,tamanhoPopulacaoInicial).imprimeMochila();
-        
-      
-        
-
-
-        
+        Mochila melhorMochilaAG = new Mochila();
+        for (int i = 0; i < 10; i++) {
+            populacaoInicial = solucionador.gerarSolucao(tamanhoPopulacaoInicial);
+            
+            long tempoInicialAG = System.currentTimeMillis();
+            Mochila solucaoAG = ag.algoritmoGenetico(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
+            long tempoFinalAG = System.currentTimeMillis();
+            
+            if(i==0){
+                melhorMochilaAG = (Mochila) solucaoAG.clone();
+            }
+            else{
+                if(solucaoAG.getValor()>melhorMochilaAG.getValor()){
+                    melhorMochilaAG = (Mochila) solucaoAG.clone();
+                }
+            }
+            
+            
+            tempoAux += tempoFinalAG-tempoInicialAG;
+            pesoMedio += solucaoAG.getPeso();
+            valorMedio += solucaoAG.getValor();
         }
         
-    
+        tempoAux = tempoAux/10;
+        pesoMedio = pesoMedio/10;
+        valorMedio = valorMedio/10;
+        
+        
+        System.out.println("____________________________________________________");
+        
+        System.out.println("Melhor Solução AG: ");
+        melhorMochilaAG.imprimeMochila();
+        
+        System.out.println("Tempo médio: " + tempoAux + "ms.");
+        System.out.println("Valor médio: " + valorMedio + " dinheiros.");
+        System.out.println("Peso médio: " + pesoMedio + "Kg");
+        
+        
+        
+        //ALG. GENETICO        
+//        System.out.println("____________________________________________________");
+//        long tempoInicialAG = System.currentTimeMillis();
+//        Mochila solucaoAG = ag.algoritmoGenetico(populacaoInicial, geracoes, tamanhoPopulacaoInicial);
+//        long tempoFinalAG = System.currentTimeMillis();
+//        
+//        System.out.println("");
+//        System.out.println("Solução Algoritmo Genético:");
+//        solucaoAG.imprimeMochila();
+//        System.out.println("Algoritmo Genético levou: " + (tempoFinalAG-tempoInicialAG) + " milisegundos.");
+    }
+        
 }
