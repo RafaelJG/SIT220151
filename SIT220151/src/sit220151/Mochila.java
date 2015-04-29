@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author rafael
  */
-public class Mochila {
+public class Mochila implements Cloneable{
     private int capacidade;
     private int peso; //peso atual da mochila
     private ArrayList<Item> solucao = new ArrayList<>();
@@ -140,5 +140,15 @@ public class Mochila {
             }
         }
         return null;
+    }
+    
+    public Object clone() {
+        try {
+            // call clone in Object.
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            System.out.println("Cloning not allowed.");
+            return this;
+        }
     }
 }

@@ -17,30 +17,42 @@ public class BuscaFeixe {
     }
     
     public ArrayList<Mochila> buscaEmFeixe(ArrayList<Mochila> populacaoInicial, int geracoes, int tamanhoPopulacao){
+        
         ArrayList<Mochila> populacaoFeixe = new ArrayList<Mochila>();
         
+        populacaoFeixe = (ArrayList<Mochila>)populacaoInicial.clone();
         
         for (int i = 0; i < geracoes; i++) {//Gerações
-            for (int j = 0; j < populacaoInicial.size(); j++) {//Gerando Vizinhos
-                populacaoFeixe.add(populacaoInicial.get(j));//Adiciona 
+            
+            for (int j = 0; j < tamanhoPopulacao; j++) {//Gerando Vizinhos
                 
-                ArrayList<Mochila> vizinhos = vizinhos(populacaoInicial.get(j));
+                ArrayList<Mochila> vizinhos = vizinhos(populacaoFeixe.get(j));
                 for(Mochila mochila : vizinhos){
-                    populacaoFeixe.add(mochila);
+                    populacaoFeixe.add(mochila);                    
                 }
+                vizinhos = new ArrayList<Mochila>();
             }
             //CHAMA O DARVI
-           populacaoFeixe = Darwin.atualizaPopulacao(populacaoFeixe, tamanhoPopulacao);            
+           populacaoFeixe = Darwin.atualizaPopulacao(populacaoFeixe, tamanhoPopulacao);
+           
+           //Quando só tiver soluções iguais ele para
+           
+           
         }
         
         return populacaoFeixe;
     }
     
-    public ArrayList<Mochila> vizinhos(Mochila mochila){
+    public ArrayList<Mochila> vizinhos(Mochila mochilaA){
         Algoritmo alg = new Algoritmo();
         ArrayList <Mochila> vizinhos  = new ArrayList<Mochila>();
-               
+        
+        Mochila mochila = (Mochila) mochilaA.clone();
+
+//        mochila.imprimeMochila();
+
         Mochila mochilaAux = new Mochila();
+        
         //vizinho superior (x+1) -> O ultimo elemento da solução recebe o proximo da estante
         for (int i = 0; i < mochila.getSolucao().size() -1 ; i++) {
             mochilaAux.getSolucao().add(mochila.getSolucao().get(i+1));                       
@@ -48,17 +60,20 @@ public class BuscaFeixe {
         mochilaAux.getSolucao().add(mochila.getSolucao().get(0));
         
         //vizinho inferior (x-1) -> O primeiro elemento da solução recebe o ultimo da estante
-       
-        vizinhos.add(alg.clonaMochila(mochilaAux));
-        vizinhos.get(0).atualizaMochila();
+        mochilaAux.atualizaMochila();
+//        vizinhos.add(alg.clonaMochila(mochilaAux));
+        vizinhos.add((Mochila)mochilaAux.clone());
+        
         
         mochilaAux = new Mochila();
         mochilaAux.getSolucao().add(mochila.getSolucao().get(27));
-        for (int i = 0; i < mochila.getSolucao().size() -2 ; i++) {
-            mochilaAux.getSolucao().add(mochila.getSolucao().get(i+1));                       
+        
+        for (int i = 0; i < mochila.getSolucao().size()-1 ; i++) {
+            mochilaAux.getSolucao().add(mochila.getSolucao().get(i));
         }
-        vizinhos.add(alg.clonaMochila(mochilaAux));
-         vizinhos.get(1).atualizaMochila();
+//        vizinhos.add(alg.clonaMochila(mochilaAux));
+         mochilaAux.atualizaMochila();
+         vizinhos.add((Mochila)mochilaAux.clone());
         
         
 //        System.out.println("Mochila original: ");
@@ -76,4 +91,10 @@ public class BuscaFeixe {
     
     }
     
+    public boolean soTemNegoIgual(ArrayList<Mochila> populacao){
+        
+        
+        
+        return false;
+    }
 }

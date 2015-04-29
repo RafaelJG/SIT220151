@@ -6,11 +6,9 @@
 package sit220151;
 
 import java.util.ArrayList;
-import org.omg.CORBA.INTERNAL;
-
 /**
  *
- * @author rafael
+ * @author rafael e maycow
  */
 public class Algoritmo {
     
