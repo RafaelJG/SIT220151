@@ -59,40 +59,39 @@ public class AlgGenetico {
         for(Mochila mochila : populacao){
            fitnessTotal += mochila.getValor();
         }
-//        double probabilidade = 0;
+
         for(Mochila mochila : populacao){
             mochila.setProbabilidade((mochila.getValor()/fitnessTotal));
         }
     }
     
     public Mochila roleta(ArrayList<Mochila> populacao){
-        Mochila chosenOne = new Mochila();
-        //esse valor "final" é como se fosse o valor de "sovrevivencia" da mochila
-        //ja está com o fator aleatório incluído, então os casais escolhidos serão exatamente os com maior valor
-        double random;
+//        Mochila chosenOne = new Mochila();        
+        double random;        
         Random gerador = new Random();        
         
-        for(Mochila mochila : populacao){
-            random = gerador.nextDouble()*100;
-//            System.out.println("Random: " + random);
-            mochila.setRoleta(random * mochila.getProbabilidade());
-//            System.out.println("Roleta: " + mochila.getRoleta());
-        }
-//        System.out.println("Populacao sem ordenar:");
-//        for (Mochila mochila : populacao) {
-//            System.out.println(mochila.getValor() + " - " + mochila.getRoleta());
-//        }
-//        
+        random = gerador.nextDouble(); //Número ramdom entre 0 e 1
+        
+        //Organiza a populacao da maior probabilidade para a menor.
         Collections.sort(populacao, new ComparadorRoleta());
         
-//        System.out.println("Populacao ordenada:");
-//        for (Mochila mochila : populacao) {
-//            System.out.println(mochila.getValor() + " - " + mochila.getRoleta());
-//        }
-//        
-        chosenOne = (Mochila)populacao.get(0).clone();
+        for (int i = 0; i < populacao.size(); i++) {
+            
+            if(i == populacao.size()-1){//Ultimo individuo da populacao e com menor probabilidade
+                if(populacao.get(i).getProbabilidade()<random &&
+                   populacao.get(i).getProbabilidade() > 0){
+                    return (Mochila)populacao.get(i).clone();
+                }                    
+            }
+            else{
+                if(populacao.get(i).getProbabilidade() > random && 
+                   populacao.get(i+1).getProbabilidade() < random){
+                    return (Mochila) populacao.get(i).clone();
+                }
+            }
+        }
         
-        return chosenOne;
+        return null;
     }
     ArrayList<Mochila> PMX (ArrayList<Mochila> casal){
         

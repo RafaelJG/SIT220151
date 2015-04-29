@@ -19,9 +19,9 @@ public class ComparadorRoleta implements Comparator<Mochila> {
      */
     @Override
     public int compare(Mochila o1, Mochila o2) {
-        if(o1.getRoleta()< o2.getRoleta())
+        if(o1.getProbabilidade()< o2.getProbabilidade())
             return 1;        
-        if(o1.getRoleta() > o2.getRoleta())
+        if(o1.getProbabilidade() > o2.getProbabilidade())
             return -1;
         else
             return 0;
