@@ -57,20 +57,20 @@ public class Mochila implements Cloneable{
             System.out.print(solucao.get(i).getId()+"\t");
             
         }
-        System.out.println("");
-        System.out.println("VALOR");
-        
-        for(int i = 0; i<=mochilaCheia; i++){
-            System.out.print(solucao.get(i).getValor()+"\t");
-            
-        }
-        System.out.println("");
-        System.out.println("PESO");
-        
-        for(int i = 0; i<=mochilaCheia; i++){
-            System.out.print(solucao.get(i).getPeso()+"\t");
-            
-        }
+//        System.out.println("");
+//        System.out.println("VALOR");
+//        
+//        for(int i = 0; i<=mochilaCheia; i++){
+//            System.out.print(solucao.get(i).getValor()+"\t");
+//            
+//        }
+//        System.out.println("");
+//        System.out.println("PESO");
+//        
+//        for(int i = 0; i<=mochilaCheia; i++){
+//            System.out.print(solucao.get(i).getPeso()+"\t");
+//            
+//        }
 
         System.out.println("");
         System.out.println("Peso da mochila:"+peso+"Valor da Mochila:"+valor);
@@ -106,7 +106,7 @@ public class Mochila implements Cloneable{
         this.valor = 0;
         
         for (int i = 0; i < solucao.size(); i++) {
-            if(this.peso + solucao.get(i).getPeso() < 28){
+            if(this.peso + solucao.get(i).getPeso() <= 28){
                 this.peso += solucao.get(i).getPeso();
                 this.valor += solucao.get(i).getValor();
                 this.mochilaCheia = i;                
