@@ -157,6 +157,7 @@ public class Mochila implements Cloneable{
             atual = m.getSolucao().get(i).getId();
             for (int j = 0; j < m.getSolucao().size(); j++) {
                 if(i!=j && m.getSolucao().get(j).getId() == atual){
+                    
                     System.out.println("AFF MANO");
                     return true;
                 }
